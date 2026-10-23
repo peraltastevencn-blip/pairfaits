@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pairfaits · Arma tu parfait</title>
+<style>
+:root{--bg:#fff6ee;--card:#ffffff;--ink:#3b2530;--mute:#8a6f78;--accent:#e0457b;--accent2:#ffb347;--line:#f1d9d9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1318;--card:#2a1c23;--ink:#fbeef0;--mute:#c3a5ae;--accent:#ff6b9d;--accent2:#ffc067;--line:#432c37;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d1318;--card:#2a1c23;--ink:#fbeef0;--mute:#c3a5ae;--accent:#ff6b9d;--accent2:#ffc067;--line:#432c37;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;min-height:100vh}
+.wrap{max-width:480px;margin:0 auto;padding:20px 18px 40px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:18px;min-height:34px}
+.bar{flex:1;height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.lvl{font:600 12px system-ui,sans-serif;color:var(--mute);white-space:nowrap}
+.brand{display:inline-block;font:700 13px system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:var(--card);border:2px solid var(--line);padding:6px 14px;border-radius:99px;margin-bottom:10px}
+.back{border:0;background:none;color:var(--mute);font-size:22px;padding:4px 8px;cursor:pointer}
+.scene{animation:in .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.emoji{font-size:54px;display:block;animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-6px)}}
+h1{font-size:30px;line-height:1.15;margin:8px 0 8px}
+p.sub{font:16px/1.5 system-ui,sans-serif;color:var(--mute);margin:0 0 22px}
+input[type=text]{width:100%;font:18px system-ui,sans-serif;padding:16px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);outline:0;transition:border .2s}
+input:focus{border-color:var(--accent)}
+.opts{display:grid;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;width:100%;padding:16px;border-radius:20px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-family:inherit;transition:transform .15s,border .2s,box-shadow .2s}
+.opt:active{transform:scale(.97)}
+.opt .e{font-size:38px}
+.opt b{display:block;font-size:19px}
+.opt span.d{display:block;font:14px/1.4 system-ui,sans-serif;color:var(--mute);margin-top:2px}
+.opt.sel{border-color:var(--accent);box-shadow:0 8px 22px -10px var(--accent);transform:scale(1.02)}
+.opt .chk{margin-left:auto;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font:700 14px system-ui;color:#fff;flex:none}
+.opt.sel .chk{background:var(--accent);border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cta{width:100%;margin-top:22px;padding:17px;border:0;border-radius:99px;font:700 18px system-ui,sans-serif;color:#fff;background:linear-gradient(90deg,var(--accent),#f0705a);cursor:pointer;box-shadow:0 10px 24px -10px var(--accent);transition:transform .15s,opacity .2s;display:block;text-align:center;text-decoration:none}
+.cta:active{transform:scale(.97)}
+.cta[disabled]{opacity:.4;pointer-events:none}
+.ghost{background:none;color:var(--accent);box-shadow:none;border:2px solid var(--accent);margin-top:12px}
+.count{font:600 13px system-ui;color:var(--accent);margin:12px 0 0;text-align:center;min-height:18px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:99px;font:600 14px system-ui;transition:transform .5s cubic-bezier(.2,1.4,.4,1);z-index:9;max-width:92vw;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+.sum{background:var(--card);border:2px dashed var(--line);border-radius:22px;padding:6px 18px;margin-bottom:6px}
+.sum div{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font:16px system-ui,sans-serif}
+.sum div:last-child{border:0}.sum em{font-style:normal;font-size:26px}.sum small{display:block;color:var(--mute);font-size:12px}
+.badges{display:flex;gap:8px;justify-content:center;margin:14px 0;font-size:26px}
+.note{font:13px/1.5 system-ui,sans-serif;color:var(--mute);text-align:center;margin-top:12px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><button class="back" id="back" aria-label="Volver" style="visibility:hidden">‹</button><div class="bar"><i id="fill"></i></div><span class="lvl" id="lvl"></span></div>
+  <main id="app"></main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+// Endpoint que envía el pedido a tu Telegram (api/pedido.js)
+var ENDPOINT = "/api/pedido";
+var TELEGRAM_USER = "TU_USUARIO_DE_TELEGRAM";
+
+var S = {name:"", asiste:null, yogur:"", cereal:"", frutas:[]};
+var step = 0, TOTAL = 6;
+var app = document.getElementById("app");
+
+var DATA = {
+  yogur:{e:"🥛",t:"Nivel 1 · La base cremosa",s:"Elige el abrazo suave que sostiene cada cucharada.",badge:"🏅 Logro desbloqueado: Maestro Cremoso",
+    o:[["Yogurt Griego","🥛","Denso, sedoso y apenas ácido."],["Kéfir","🫙","Fresco, burbujeante y vivo."]]},
+  cereal:{e:"🥣",t:"Nivel 2 · El crujido dorado",s:"Ese crack que despierta tus sentidos.",badge:"🏅 Logro desbloqueado: Rey del Crunch",
+    o:[["Avena","🌾","Tierna, tostada y reconfortante."],["Granola","🍯","Miel, frutos secos y mucho crunch."]]},
+  frutas:{e:"🍓",t:"Nivel 3 · Explosión de frescura",s:"Elige exactamente 2 y deja que el jugo haga magia.",badge:"🏅 Logro desbloqueado: Alquimista Frutal",
+    o:[["Kiwi","🥝","Verde, jugoso y chispeante."],["Mango","🥭","Dulce, tropical y aterciopelado."],["Fresa","🍓","Roja, fragante y irresistible."]]}
+};
+
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2400)}
+function go(n){step=n;render();window.scrollTo({top:0,behavior:"smooth"})}
+
+function msg(){
+  return "🍓 ¡Nuevo pedido de parfait!\n\n👤 Cliente: "+S.name+"\n🥛 Yogurt: "+S.yogur+"\n🥣 Cereal: "+S.cereal+"\n🍓 Fruta: "+S.frutas.join(" y ");
+}
+function link(){return "https://t.me/"+encodeURIComponent(TELEGRAM_USER)+"?text="+encodeURIComponent(msg())}
+
+function levelView(key,multi){
+  var d=DATA[key],h='<div class="scene"><span class="emoji">'+d.e+'</span><h1>'+d.t+'</h1><p class="sub">'+d.s+'</p><div class="opts">';
+  d.o.forEach(function(o){
+    var sel=multi?S.frutas.indexOf(o[0])>-1:S[key]===o[0];
+    h+='<button class="opt'+(sel?' sel':'')+'" data-v="'+o[0]+'"><span class="e">'+o[1]+'</span><span><b>'+o[0]+'</b><span class="d">'+o[2]+'</span></span><span class="chk">'+(sel?'✓':'')+'</span></button>';
+  });
+  h+='</div>'+(multi?'<div class="count" id="cnt"></div>':'')+'<button class="cta" id="next" disabled>Continuar</button></div>';
+  return h;
+}
+
+function render(){
+  document.getElementById("fill").style.width=Math.round(step/(TOTAL-1)*100)+"%";
+  document.getElementById("back").style.visibility=step>0?"visible":"hidden";
+  var L={2:"Nivel 1/3",3:"Nivel 2/3",4:"Nivel 3/3",5:"¡Listo!"};
+  document.getElementById("lvl").textContent=L[step]||"Bienvenida";
+  var nx;
+  if(step===0){
+    app.innerHTML='<div class="scene"><span class="brand">Pairfaits</span><span class="emoji">🍓</span><h1>Arma tu parfait perfecto</h1><p class="sub">Bienvenido a Pairfaits: tres niveles, mil sabores. Primero, ¿cómo te llamas?</p><input type="text" id="nm" placeholder="Tu nombre" autocomplete="given-name" maxlength="40" value="'+esc(S.name)+'"><button class="cta" id="next">Comenzar la aventura</button></div>';
+    var nm=document.getElementById("nm");nx=document.getElementById("next");
+    var chk=function(){nx.disabled=nm.value.trim().length<2};chk();
+    nm.addEventListener("input",chk);
+    nx.onclick=function(){S.name=nm.value.trim();go(1)};
+    nm.addEventListener("keydown",function(e){if(e.key==="Enter"&&!nx.disabled)nx.click()});
+  }else if(step===1){
+    app.innerHTML='<div class="scene"><span class="emoji">🎉</span><h1>¡Hola, '+esc(S.name)+'!</h1><p class="sub">El <b>28 de octubre</b> tenemos un evento muy dulce. ¿Nos acompañas?</p><div class="row"><button class="opt'+(S.asiste==="Sí"?' sel':'')+'" data-v="Sí" style="flex-direction:column;text-align:center"><span class="e">🙌</span><b>Sí, ahí estaré</b></button><button class="opt'+(S.asiste==="No"?' sel':'')+'" data-v="No" style="flex-direction:column;text-align:center"><span class="e">🥲</span><b>No podré</b></button></div><button class="cta" id="next" '+(S.asiste?'':'disabled')+'>Continuar</button></div>';
+    app.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){S.asiste=b.dataset.v;render();if(S.asiste==="Sí")toast("¡Te esperamos! 🎊")}});
+    document.getElementById("next").onclick=function(){go(2)};
+  }else if(step===2||step===3){
+    var key=step===2?"yogur":"cereal";
+    app.innerHTML=levelView(key,false);
+    nx=document.getElementById("next");nx.disabled=!S[key];
+    app.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){S[key]=b.dataset.v;render()}});
+    nx.onclick=function(){toast(DATA[key].badge);go(step+1)};
+  }else if(step===4){
+    app.innerHTML=levelView("frutas",true);
+    nx=document.getElementById("next");
+    document.getElementById("cnt").textContent=S.frutas.length+" de 2 elegidas"+(S.frutas.length===2?" ✨":"");
+    nx.disabled=S.frutas.length!==2;
+    app.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){
+      var v=b.dataset.v,i=S.frutas.indexOf(v);
+      if(i>-1)S.frutas.splice(i,1);
+      else if(S.frutas.length<2)S.frutas.push(v);
+      else{toast("Solo 2 frutas: quita una para cambiar");return}
+      render();
+    }});
+    nx.onclick=function(){toast(DATA.frutas.badge);go(5)};
+  }else{
+    app.innerHTML='<div class="scene"><span class="emoji">✨</span><h1>Tu parfait, tu creación</h1><p class="sub">'+esc(S.name)+', así quedó tu obra maestra: capas de sabor hechas a tu medida.</p><div class="sum"><div><em>🥛</em><span><small>Yogurt</small><b>'+esc(S.yogur)+'</b></span></div><div><em>🥣</em><span><small>Cereal</small><b>'+esc(S.cereal)+'</b></span></div><div><em>🍓</em><span><small>Fruta</small><b>'+esc(S.frutas.join(" y "))+'</b></span></div></div><div class="badges">🏅🥇🍓</div><button class="cta" id="send">Enviar mi pedido</button><button class="cta ghost" id="copy">Copiar mi pedido</button><p class="note">Tu pedido le llega directo a Pairfaits. 💌</p></div>';
+    document.getElementById("send").onclick=async function(){
+      var b=this;b.disabled=true;b.textContent="Enviando…";
+      try{
+        var r=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:S.name,asiste:S.asiste,yogur:S.yogur,cereal:S.cereal,frutas:S.frutas})});
+        if(!r.ok)throw new Error("fail");
+        done();
+      }catch(e){b.disabled=false;b.textContent="Enviar mi pedido";toast("No pudimos enviarlo. Intenta de nuevo 🙏")}
+    };
+    document.getElementById("copy").onclick=function(){
+      try{navigator.clipboard.writeText(msg()).then(function(){toast("Pedido copiado ✅")},function(){toast("No se pudo copiar")})}catch(e){toast("No se pudo copiar")}
+    };
+  }
+}
+function done(){
+  document.getElementById("back").style.visibility="hidden";
+  app.innerHTML='<div class="scene" style="text-align:center"><span class="emoji">🎉</span><h1>¡Pedido enviado, '+esc(S.name)+'!</h1><p class="sub">Tu parfait ya está en manos de Pairfaits. '+(S.asiste==="Sí"?"Nos vemos el 28 de octubre. ":"")+'💖</p><div class="badges">🏅🥇🍓</div></div>';
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.getElementById("back").onclick=function(){if(step>0)go(step-1)};
+render();
+</script>
+</body>
+</html>
